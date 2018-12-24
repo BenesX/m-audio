@@ -7,7 +7,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: 'mAudio.min.js'
+        filename: 'mAudio.min.js',
+        library: 'MAudio',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
@@ -40,8 +42,13 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        extensions: ['js']
+    externals: {
+        MAudio: {
+            root: "MAudio",
+            commonjs2: "MAudio",
+            commonjs: "MAudio",
+            amd: "MAudio"
+        }
     },
     plugins: [
         new MiniCssExtractPlugin({
